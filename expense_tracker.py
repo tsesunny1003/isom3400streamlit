@@ -8,7 +8,7 @@ if 'expenses' not in st.session_state:
   st.session_state.expenses = pd.DataFrame(columns=['Date', 'Category', 'Amount', 'Description'])
 
 with st.form("expense_form"):
-  st.subheader("Add New Exepnse")
+  st.subheader("Add New Expense")
   date = st.date_input("Date")
   category = st.selectbox("Category", ["Food", "Transport", "Entertainment", "Bill", "Other"])
   amount = st.number_input("Amount", min_value=0, step=0.01)
@@ -22,8 +22,8 @@ with st.form("expense_form"):
       'Amount': [amount],
       'Description': [description]
     })
-    st.session_state.expenses = pd.concat({st.session_state.expenses, new_expense}, ignore_index=True)
-    st.success("Expense addes successfully!")
+    st.session_state.expenses = pd.concat([st.session_state.expenses, new_expense], ignore_index=True)
+    st.success("Expense added successfully!")
 
 if not st.session_state.expenses.empty:
   st.subheader("Your Expenses")
